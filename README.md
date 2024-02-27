@@ -8,7 +8,7 @@ Our community-based lost animal finder web application puts the power of finding
 First clone this repository:
 
 ```bash
-git clone https://github.com/mtcsrht/lostanimalproject.git
+git clone https://github.com/mtcsrht/lostanimal-project.git
 ```
 Install composer:
 
