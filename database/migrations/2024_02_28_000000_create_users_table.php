@@ -19,6 +19,14 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('phonenumber');
+            $table->bigInteger('IRSZ_ID')->unsigned();
+            $table->string('address');
+            $table->string('avatar');
+            $table->foreign('IRSZ_ID')->references('IRSZ_Id')->on('cities')->onDelete('cascade');
+            
         });
     }
 
