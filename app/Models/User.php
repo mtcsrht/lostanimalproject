@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phonenumber',
+        'firstname',
+        'lastname',
+        'IRSZ_Id',
+
     ];
 
     /**
