@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/posts', function(){
     return view('posts');
 });
+//API ROUTES
+Route::get('api/cities', [ApiController::class, 'GetAllCities']);
+Route::get('api/cities/{name}', [ApiController::class, 'GetKeywordCities']);
+
 require __DIR__.'/auth.php';
