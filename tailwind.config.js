@@ -14,8 +14,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            backgroundImage: {
+                'lightmode': "url('/resources/images/bg-white.svg')",
+                'darkmode': "url('/resources/images/bg-dark.svg')",
+              },
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms
+    ],
 };
