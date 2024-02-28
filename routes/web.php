@@ -29,11 +29,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/posts', function(){
-    return view('posts');
-});
-//API ROUTES
-Route::get('api/cities', [ApiController::class, 'GetAllCities']);
-Route::get('api/cities/{name}', [ApiController::class, 'GetKeywordCities']);
-
 require __DIR__.'/auth.php';
