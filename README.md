@@ -5,6 +5,7 @@ Our community-based lost animal finder web application puts the power of finding
 
 
 ## Installation
+
 First clone this repository:
 
 ```bash
@@ -13,34 +14,39 @@ git clone https://github.com/mtcsrht/lostanimal-project.git
 Install composer:
 
 ```bash
-cd project-name
+cd lostanimal-project
 composer install
 ```
 
 Install npm dependencies:
 ```bash
-cd project-name
 npm install
 ```
 Create your .env file  
 ```bash
-cd project-name
 cp .env.example .env
 ```
-Migrate the database *(project-name/database/migrations)*
+Edit .env file to connect to your database
+```
+DB_CONNECTION=mysql
+DB_HOST={server name, or ip address}
+DB_PORT=3306
+DB_DATABASE={your database name}
+DB_USERNAME=root
+DB_PASSWORD=
+```
+Before migration you have to create the table you connect to
+Migrate the database *(lostanimal-project/database/migrations)*
 ```bash
-cd project-name
 php artisan migrate
 ```
 
 Generate your key to the application : 
 ```bash
-cd project-name
 php artisan key:generate
 ```
 Run the built-in development server:
 ```bash
-cd project-name
 php artisan serve
 ```
 Run the Node.js server:
