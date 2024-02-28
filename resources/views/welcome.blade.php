@@ -36,7 +36,7 @@
 
                     </div>
                     <div class="text-2xl font-bold text-center text-blue-600">
-                        <button class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded" onclick="window.location.replace('/posts')">Nézelődnék</button>
+                        <button class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded">Nézelődnék</button>
                     </div>
                 </div>
             </div>
