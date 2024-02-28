@@ -5,14 +5,14 @@
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Felhasználónév')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder=""/>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" placeholder="yourname@domain.com"/>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -41,27 +41,27 @@
         <!-- First name -->
         <div class="mt-4">
             <x-input-label for="firstname" :value="__('Keresztnév')"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus autocomplete="firstname" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus autocomplete="firstname" placeholder="pl: János"/>
             <x-input-error :messages="$errors->get('firstname')" class="mt-2" />
         </div>
 
         <!-- Last name -->
         <div class="mt-4">
             <x-input-label for="lastname" :value="__('Vezetéknév')"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" placeholder="pl: Nagy"/>
             <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
         </div>
         <!-- Phone number -->
         <div class="mt-4">
             <x-input-label for="phonenumber" :value="__('Telefonszám')"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="phonenumbere" :value="old('phonenumber')" required autofocus autocomplete="phonenumber" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="phonenumber" :value="old('phonenumber')" required autofocus autocomplete="phonenumber" placeholder="0630" />
             <x-input-error :messages="$errors->get('phonenumber')" class="mt-2" />
         </div>
 
         <!-- Postal code -->
         <div class="mt-4">
             <x-input-label for="postalcode" :value="__('Irányítószám')"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="postalcode" :value="old('postalcode')" required autofocus autocomplete="postalcode" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="postalcode" :value="old('postalcode')" required autofocus autocomplete="postalcode"  placeholder="pl: 2660" />
             <x-input-error :messages="$errors->get('postalcode')" class="mt-2" />
         </div>
         
