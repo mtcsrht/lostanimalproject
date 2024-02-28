@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'firstname' => ['required','string','max:255'],
             'lastname' => ['required','string','max:255'],
-            'phonenumber' => ['required','string','max:255',],
+            'phonenumber' => ['required','numeric','min:11'],
             'postalcode' => ['required','string', 'max:4'],
         ]);
         
@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             'phonenumber' => $request->phonenumber,
             'IRSZ_Id' => $request->postalcode,
         ]);
-
+        
         event(new Registered($user));
 
         Auth::login($user);
