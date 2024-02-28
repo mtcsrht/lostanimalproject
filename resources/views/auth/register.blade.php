@@ -60,7 +60,7 @@
 
         <!-- Postal code -->
         <div class="mt-4">
-            <x-input-label for="postalcode" :value="__('Keresztnév')"/>
+            <x-input-label for="postalcode" :value="__('Irányítószám')"/>
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="postalcode" :value="old('postalcode')" required autofocus autocomplete="postalcode" />
             <x-input-error :messages="$errors->get('postalcode')" class="mt-2" />
         </div>
