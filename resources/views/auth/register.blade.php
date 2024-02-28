@@ -69,7 +69,23 @@
             </select>
         </div>
         <script>
+           let cityname = document.getElementById('cityname');
+           let cities_select= document.getElementById('cities_multiple');
            
+           cityname.addEventListener('input', function(){
+            let name = cityname.value;
+            let response = fetch(`api/cities/${name}`).then(response => response.json()).then(data => {
+            console.log(data);
+            cities_select.innerHTML = '';
+            for(let varos of data){
+                cities_select.options.add(new Option(varos.city, varos.postal_code));
+            }
+            }).catch(error => {
+                console.log(error);
+            });
+           })
+           //TODO beletenni a citiname mezőbe a kiválasztottat illetve alapvetően betölteni a városokat
+            
         </script>
         
         <div class="flex items-center justify-end mt-4">
