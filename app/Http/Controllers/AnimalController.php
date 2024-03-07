@@ -14,4 +14,7 @@ class AnimalController extends Controller
         $animals = Animal::where("userId", auth()->user()->id)->get();
         return view("posts", compact("animals"));
     }
+    public function edit(){
+        
+    }
 }
