@@ -71,18 +71,22 @@
         <script>
            let cityname = document.getElementById('cityname');
            let cities_select= document.getElementById('cities_multiple');
-           
+
            cityname.addEventListener('input', function(){
             let name = cityname.value;
             let response = fetch(`api/cities/${name}`).then(response => response.json()).then(data => {
             console.log(data);
             cities_select.innerHTML = '';
             for(let varos of data){
-                cities_select.options.add(new Option(varos.city, varos.postal_code));
+                cities_select.options.add(new Option(`${varos.city} ${varos.postal_code}`, varos.postal_code));
             }
             }).catch(error => {
                 console.log(error);
             });
+           })
+
+           cities_select.addEventListener('change', function(){
+            cityname.value = cities_select.options[cities_select.selectedIndex].text.split(' ')[0]
            })
            //TODO beletenni a citiname mezőbe a kiválasztottat illetve alapvetően betölteni a városokat
             

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -37,9 +38,10 @@ class RegisteredUserController extends Controller
             'firstname' => ['required','string','max:255'],
             'lastname' => ['required','string','max:255'],
             'phonenumber' => ['required','numeric','min:11'],
-            'postalcode' => ['required','string', 'max:4'],
+            'cityname' => ['required','string', 'max:255'],
         ]);
         
+        $irsz = City::where('name' , $request->cityname)->value("IRSZ_Id");
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -47,7 +49,7 @@ class RegisteredUserController extends Controller
             'firstname' => $request->firstname,
             'lastname'=> $request->lastname,
             'phonenumber' => $request->phonenumber,
-            'IRSZ_Id' => $request->postalcode,
+            'IRSZ_Id' => $irsz,
         ]);
         
         event(new Registered($user));
