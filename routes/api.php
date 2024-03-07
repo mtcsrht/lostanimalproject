@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('cities', [CityController::class, 'index']);
-Route::get('cities/{irsz}', [CityController::class, 'show']);
+Route::get('cities/{cityname}', [CityController::class, 'show']);
