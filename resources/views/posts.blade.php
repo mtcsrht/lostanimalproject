@@ -4,7 +4,7 @@
             {{ __('Posts') }}
         </h2>
     </x-slot>
-        <div class="container py-12 sm:px-6 lg:px-8">
+        <div class="py-12 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             @foreach ($animals as $animal)
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
