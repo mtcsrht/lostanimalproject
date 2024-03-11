@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController; 
 use App\Models\Animal;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/myposts', [AnimalController::class, 'index'])->name('myposts.index');
-    Route::get('/edit-post', [AnimalController::class,'edit'])->name('edit-post.edit');
+    Route::get('/createpost', [PostController::class, 'create'])->name('createpost');
+    Route::post('/createpost', [PostController::class, 'store'])->name('uploadpost');
 });
 
 
