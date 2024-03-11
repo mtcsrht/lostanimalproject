@@ -71,7 +71,7 @@
         <script>
            let cityname = document.getElementById('cityname');
            let cities_select= document.getElementById('cities_multiple');
-
+/*
            cityname.addEventListener('input', function(){
             let name = cityname.value;
             let response = fetch(`api/cities/${name}`).then(response => response.json()).then(data => {
@@ -84,6 +84,32 @@
                 console.log(error);
             });
            })
+*/
+            let allCityData = []; 
+
+            // Fetch the city data once at application load
+            fetch('api/cities')
+            .then(response => response.json())
+            .then(data => allCityData = data)
+            .catch(error => console.error("Error loading initial city data:", error));
+
+            cityname.addEventListener('input', function() {
+                const inputValue = cityname.value.toLowerCase(); 
+
+                // Filter in-memory
+                const filteredCities = allCityData.filter(city => 
+                    city.city.toLowerCase().startsWith(inputValue)
+                );
+
+                cities_select.length = 0; // Clear existing options
+
+                // Add options using options.add
+                for (const { city, postal_code } of filteredCities) {
+                    const newOption = new Option(`${city} ${postal_code}`, postal_code);
+                    cities_select.options.add(newOption);
+                }
+            });
+
 
            cities_select.addEventListener('change', function(){
             cityname.value = cities_select.options[cities_select.selectedIndex].text.split(' ')[0]
