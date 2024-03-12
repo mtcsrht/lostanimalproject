@@ -17,6 +17,11 @@ export default {
             backgroundImage: {
                 'lightmode': "url('/resources/images/bg-white.svg')",
                 'darkmode': "url('/resources/images/bg-dark.svg')",
+                'waves-lightmode': "url('/resources/images/bg-waves-light.svg')",
+                'waves-darkmode': "url('/resources/images/bg-waves-dark.svg')",
+                'mobile-waves-lightmode': "url('/resources/images/bg-mobile-waves-light.svg')",
+                'mobile-waves-darkmode': "url('/resources/images/bg-mobile-waves-dark.svg')",
+                
               },
         },
     },
