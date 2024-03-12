@@ -9,12 +9,12 @@ class Animal extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', // Assuming 'userld' is a typo for 'user_id'
+        'userId', // Assuming 'userld' is a typo for 'user_id'
         'name',
-        'chip_number',
+        'chipNumber',
         'gender',
-        'color_id',
+        'colorId',
         'description',
-        'image', // Assuming 'image' refers to the animal's image URL
+        'image', // Assuming 'image' refers to the animal's image   URL
     ];
 }

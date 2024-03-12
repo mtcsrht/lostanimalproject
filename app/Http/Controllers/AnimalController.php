@@ -9,11 +9,11 @@ use Illuminate\View\View;
 
 class AnimalController extends Controller
 {
-    
+    //Mar nem hasznaljuk atkerult a PostControllerbe!!!!!
     public function index(Request $request)
     {
-        $animals = Animal::where("userId", auth()->user()->id)->get();
-        return view("posts", compact("animals"));
+        $animals = Animal::where("userId", auth()->user()->id)->get();        
+        return view("myposts", compact("animals"));
     }
 
     
