@@ -16,6 +16,10 @@ class PostController extends Controller
         $animals = Animal::where("userId", auth()->user()->id)->get();        
         return view("myposts", compact("animals"));
     }
+    public function show(){
+        $animals = Animal::all();
+        return $animals;
+    }
 
     public function destroy(Request $request){
         dd($request->all());
