@@ -103,7 +103,7 @@
                         @endauth
                     @endif
         </div>
-<!--TODO MEGCSINALNI ITT HOGY CSAK BEJELENTKEZESNEL MUTASSA EZEKET-->
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
 
@@ -124,5 +124,6 @@
                 </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>
