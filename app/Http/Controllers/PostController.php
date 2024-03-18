@@ -18,6 +18,10 @@ class PostController extends Controller
     }
     public function show(){
         $animals = Animal::all();
+        return view("posts", compact("animals"));
+    }
+    public function showApi(){
+        $animals = Animal::all();
         return $animals;
     }
 

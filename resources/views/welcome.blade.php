@@ -7,8 +7,9 @@
         <title>{{env("APP_NAME")}}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
         <!-- Styles -->       
         @vite(['resources/css/app.css', 'resources/js/app.js'])     
@@ -39,9 +40,10 @@
                         <!--
                         <button class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 px-4 rounded">Nézelődnék</button>
                         -->
-                    <button class="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full  before:bg-cyan-500 before:duration-500 before:ease-out hover:shadow-cyan-500 hover:before:h-56 hover:before:w-56 rounded-sm">
+                      
+                      <a href="{{route('posts.show')}}" class="relative flex h-[50px] w-40 items-center justify-center overflow-hidden bg-gray-800 text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full  before:bg-cyan-500 before:duration-500 before:ease-out hover:shadow-cyan-500 hover:before:h-56 hover:before:w-56 rounded-sm">
                         <span class="relative z-10">Nézelődnék</span>
-                      </button>
+                      </a>
                       </div>
                 </div>
                 <div class="fixed bottom-0 right-0 p-6 text-right z-1">
