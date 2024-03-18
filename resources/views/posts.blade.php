@@ -5,8 +5,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class=" container">
                         <div class="flex flex-col sm:flex-row sm:flex-wrap justify-evenly item-start gap-5">
-                            @foreach ($animals as $animal)
-                                <div
+                            @forelse ($animals as $animal)
+                            <div
                                     class="flex flex-col justify-between max-w-sm bg-white border border-gray-400 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5">
                                     <img class="w-[512px] rounded transition-all duration-300 filter grayscale hover:grayscale-0"
                                         src="{{ asset("storage/$animal->image") }}" alt="" />
@@ -23,7 +23,12 @@
 
                                     </div>
                                 </div>
-                            @endforeach
+                        @empty
+                            <div class="text-center">
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">Még nincs feltöltött
+                                    állat</p>
+                            </div>
+                        @endforelse
                         </div>
                     </div>
                 </div>
