@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/myposts', [PostController::class, 'index'])->name('myposts.index');
-    Route::delete('myposts', [PostController::class,'destory'])->name('myposts.destroy');
+    Route::delete('/myposts/{animal}', [PostController::class, 'destroy'])->name('myposts.destroy');
     Route::get('/createpost', [PostController::class, 'create'])->name('createpost');
     Route::post('/createpost', [PostController::class, 'store'])->name('uploadpost');
 });

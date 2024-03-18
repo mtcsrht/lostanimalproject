@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lostanimal', function (Blueprint $table) {
-            $table->id();
+        Schema::create('animals', function (Blueprint $table) {
+            $table->uuid()->primary();
             $table->timestamps();
             $table->bigInteger('userId')->unsigned()->index();
             $table->string('name');
-            $table->tinyInteger('hasChipNumber')->default(0);
             $table->string('chipNumber')->nullable();
             $table->tinyInteger('gender')->default(0);
-            $table->bigInteger('colorId')->unsigned();
+            $table->integer('colorId');
             $table->string('description')->nullable();
-            $table->string('markings')->nullable();
             $table->string('image')->nullable();
             $table->foreign('colorId')->references('id')->on('colors')->onDelete('cascade');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lostanimal');
+        Schema::dropIfExists('animals');
     }
 };

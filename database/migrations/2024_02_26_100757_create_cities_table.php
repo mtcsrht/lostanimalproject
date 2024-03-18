@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cities', function (Blueprint $table) {
-            $table->id('IRSZ_Id');
+            $table->integer('IRSZ_Id')->primary();
             $table->string('name');
-            $table->bigInteger('County_Id')->unsigned();
+            $table->integer('County_Id');
             $table->foreign('County_Id')->references('id')->on('counties')->onDelete('restrict');
         });
     }
