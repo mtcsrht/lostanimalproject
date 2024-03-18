@@ -17,4 +17,8 @@ class Animal extends Model
         'description',
         'image', // Assuming 'image' refers to the animal's image   URL
     ];
+
+    protected $primaryKey = 'uuid';
+    protected $keyType = 'string'; 
+
 }

@@ -8,25 +8,28 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Ramsey\Uuid\Uuid;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $animals = Animal::where("userId", auth()->user()->id)->get();        
+        $animals = Animal::where("userId", auth()->user()->id)->get();
         return view("myposts", compact("animals"));
     }
     public function show(){
         $animals = Animal::all();
         return view("posts", compact("animals"));
     }
-    public function showApi(){
-        $animals = Animal::all();
+    public function showApi() {
+        $animals = Animal::all(); 
         return $animals;
     }
 
-    public function destroy(Request $request){
-        dd($request->all());
+    public function destroy(Animal $animal)
+    {   
+        $animal->delete();
+        return Redirect::route('myposts.index')->with('status','animal-deleted');
     }
     public function create() : View
     {
@@ -36,7 +39,7 @@ class PostController extends Controller
     }
 
     public function store(Request $request) : RedirectResponse
-    {;
+    {
         $request->validate([
             'name' => ['required', 'string'],
             'chip' => ['nullable','string', 'max:16'],
@@ -58,6 +61,7 @@ class PostController extends Controller
 
 
         Animal::create([
+            'uuid' => Uuid::uuid4()->toString(),
             'userId' => $request->user()->id,
             'name'=> $request->name,
             'chipNumber' => $request->chip,
@@ -67,7 +71,7 @@ class PostController extends Controller
             'image' => $imagePath,
         ]);
         
-        
+                
         return Redirect::route('createpost')->with('status','animal-uploaded');
     }
 }
