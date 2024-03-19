@@ -45,7 +45,7 @@ class PostController extends Controller
             'chip' => ['nullable','string', 'max:16'],
             'gender' => ['required'],
             'color' => ['required'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
             'picture' => [
                 'required',
                 'image',

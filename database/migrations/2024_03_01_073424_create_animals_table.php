@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('chipNumber')->nullable();
             $table->tinyInteger('gender')->default(0);
             $table->integer('colorId');
-            $table->string('description')->nullable();
+            $table->string('description', 1000)->nullable();
             $table->string('image')->nullable();
             $table->foreign('colorId')->references('id')->on('colors')->onDelete('cascade');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
