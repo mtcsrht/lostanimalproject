@@ -9,6 +9,7 @@ class Animal extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'uuid',
         'userId', // Assuming 'userld' is a typo for 'user_id'
         'name',
         'chipNumber',
