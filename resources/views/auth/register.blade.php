@@ -60,20 +60,20 @@
 
         <!-- Postal code -->
         <div class="mt-4">
-            <x-input-label for="cityname" :value="__('Város')"/>
-            <x-text-input id="cityname" class="block mt-1 w-full" type="text" name="cityname" :value="old('cityname')" required autofocus autocomplete="cityname"  placeholder="pl: Vác" />
-            <x-input-error :messages="$errors->get('cityname')" class="mt-2" />
+            <x-input-label for="postalCode" :value="__('Irányítószám')"/>
+            <x-text-input id="postalCode" maxlength="4" class="block mt-1 w-full" type="text" name="postalCode" :value="old('postalCode')" required autofocus autocomplete="postalCode"  placeholder="pl: 2660" />
+            <x-input-error :messages="$errors->get('postalCode')" class="mt-2" />
         </div>
         <div class="mt-4">
             <select multiple id="cities_multiple" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </select>
         </div>
         <script>
-           let cityname = document.getElementById('cityname');
+           let postalCode = document.getElementById('postalCode');
            let cities_select= document.getElementById('cities_multiple');
 /*
-           cityname.addEventListener('input', function(){
-            let name = cityname.value;
+           postalCode.addEventListener('input', function(){
+            let name = postalCode.value;
             let response = fetch(`api/cities/${name}`).then(response => response.json()).then(data => {
             console.log(data);
             cities_select.innerHTML = '';
@@ -93,13 +93,12 @@
             .then(data => allCityData = data)
             .catch(error => console.error("Error loading initial city data:", error));
 
-            cityname.addEventListener('input', function() {
-                const inputValue = cityname.value.toLowerCase(); 
-
+            postalCode.addEventListener('input', function() {
+                const inputValue = postalCode.value; 
+                const regex = new RegExp('^'+inputValue + '.*'); 
                 // Filter in-memory
-                const filteredCities = allCityData.filter(city => 
-                    city.city.toLowerCase().startsWith(inputValue)
-                );
+                const filteredCities = allCityData.filter(city =>
+                    regex.test(city.postal_code));
 
                 cities_select.length = 0; // Clear existing options
 
@@ -112,7 +111,7 @@
 
 
            cities_select.addEventListener('change', function(){
-            cityname.value = cities_select.options[cities_select.selectedIndex].text.split(' ')[0]
+            postalCode.value = cities_select.options[cities_select.selectedIndex].value
            })
            //TODO beletenni a citiname mezőbe a kiválasztottat illetve alapvetően betölteni a városokat
             

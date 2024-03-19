@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'firstname' => ['required','string','max:255'],
             'lastname' => ['required','string','max:255'],
             'phonenumber' => ['required','numeric','min:11'],
-            'cityname' => ['required','string', 'max:255'],
+            'postalCode' => ['required','string', 'max:4'],
         ]);
         
         $irsz = City::where('name' , $request->cityname)->value("IRSZ_Id");
@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             'firstname' => $request->firstname,
             'lastname'=> $request->lastname,
             'phonenumber' => $request->phonenumber,
-            'IRSZ_Id' => $irsz,
+            'IRSZ_Id' => $request->postalCode,
         ]);
         
         event(new Registered($user));
