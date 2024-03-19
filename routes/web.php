@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController; 
-use App\Models\Animal;
 use Illuminate\Support\Facades\Route;
 
 /*
