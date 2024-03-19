@@ -44,9 +44,9 @@
                                             </a>
                                             
                                             <x-danger-button x-data=""
-                                                x-on:click.prevent="$dispatch('open-modal', 'confirm-animal-deletion')">{{ __('Állat törlése') }}</x-danger-button>
+                                                x-on:click="$dispatch('open-modal', 'confirm-animal-deletion-{{ $animal->uuid }}')">{{ __('Állat törlése') }}</x-danger-button>
 
-                                            <x-modal name="confirm-animal-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                            <x-modal name="confirm-animal-deletion-{{ $animal->uuid }}" :show="$errors->userDeletion->isNotEmpty()" focusable>
                                                 <form method="post" action="{{ route('myposts.destroy', $animal) }}"
                                                     class="p-6">
                                                     @csrf
@@ -59,7 +59,7 @@
                                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                                         {{ __('Ha egyszer kitörlöd az állatot, később újra fel kell töltened!') }}
                                                     </p>
-
+                                                    <p>{{$animal->uuid}}</p>
                                                     <div class="mt-6 flex justify-end">
                                                         <x-secondary-button x-on:click="$dispatch('close')">
                                                             {{ __('Mégse') }}
