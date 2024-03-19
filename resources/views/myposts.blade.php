@@ -21,13 +21,14 @@
                                 <div
                                     class="flex flex-col justify-between max-w-sm bg-white border border-gray-400 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-5">
                                     <img class="w-[512px] rounded transition-all duration-300 filter grayscale hover:grayscale-0"
-                                        src="{{ asset("storage/$animal->image") }}" alt="" />
+                                        src="{{ asset("storage/$animal->image") }}" alt="{{$animal->name}}" />
                                     <div class="p-5">
                                         <h5
                                             class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                             {{ $animal->name }}</h5>
                                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                             {{ Str::of($animal->description)->limit(40) }}</p>
+                                          <!-- DEBUG -->  
                                         <p>{{ $animal->uuid }}</p>
                                         <div class="flex gap-5">
                                             <a href=""
@@ -41,15 +42,7 @@
                                                         d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
                                                 </svg>
                                             </a>
-                                            <!--
-                                            <form action="{{ route('myposts.destroy', $animal) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-800 ...">
-                                                    Törlés
-                                                </button>
-                                            </form>
-                                        -->
+                                            
                                             <x-danger-button x-data=""
                                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-animal-deletion')">{{ __('Állat törlése') }}</x-danger-button>
 
