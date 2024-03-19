@@ -41,7 +41,9 @@ class RegisteredUserController extends Controller
             'postalCode' => ['required','string', 'max:4'],
         ]);
         
+        //deprecated MAR NEM HASZNALJUK DE FELEK HOGY ELROMLIK HA TORLOM
         $irsz = City::where('name' , $request->cityname)->value("IRSZ_Id");
+       
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
