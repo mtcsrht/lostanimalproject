@@ -26,7 +26,7 @@ class AnimalFactory extends Factory
         $imageUrl = $this->faker->imageUrl(512, 512, 'animals', true);
         $imageContents = file_get_contents($imageUrl);
 
-        $imagePath = 'animal-images/' . $imageUuid . '.jpg'; // Simpler path
+        $imagePath = 'animal-pictures/' . $imageUuid . '.jpg'; // Simpler path
         Storage::disk('public')->put($imagePath, $imageContents); // Use Laravel's storage
         
         return[
