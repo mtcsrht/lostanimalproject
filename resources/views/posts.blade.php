@@ -35,4 +35,4 @@
             </div>
         </div>
     </div>
-</x-public-layot>
+</x-public-layout>
