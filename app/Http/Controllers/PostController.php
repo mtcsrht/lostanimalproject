@@ -69,6 +69,9 @@ class PostController extends Controller
     }
     public function destroy(Animal $animal)
     {   
+        $imagePath = $animal->image;
+        //delete image
+        unlink(public_path('storage/'.$imagePath));
         $animal->delete();
         return Redirect::route('myposts.index')->with('status','animal-deleted');
     }
