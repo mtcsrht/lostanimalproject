@@ -116,6 +116,6 @@ class PostController extends Controller
         ]);
         
                 
-        return Redirect::route('createpost')->with('status','animal-uploaded');
+        return Redirect::route('myposts.index')->with('status','animal-uploaded');
     }
 }
