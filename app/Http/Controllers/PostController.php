@@ -26,6 +26,47 @@ class PostController extends Controller
         return $animals;
     }
 
+    public function edit(Animal $animal) : View
+    {
+        $colors = Color::all();
+        return view("editpost", compact('animal', 'colors'));
+    }
+
+    public function update(Request $request, Animal $animal) : RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'chip' => ['nullable','string', 'max:16'],
+            'gender' => ['required'],
+            'color' => ['required'],
+            'description' => ['required', 'string', 'max:1000'],
+            'picture' => [
+                'nullable',
+                'image',
+                'mimes:jpg,png,jpeg,svg',
+                'max:2048'
+            ],
+        ]);
+
+        
+        $animal->name = $request->name;
+        $animal->chipNumber = $request->chip;
+        $animal->gender = $request->gender;
+        $animal->colorId = $request->color;
+        $animal->description = $request->description;
+
+        if ($request->hasFile('picture')) {
+            $imagePath = $request->file('picture')->store(
+                'animal-pictures',
+                'public'
+            );
+            $animal->image = $imagePath;
+        }
+
+        $animal->save();
+
+        return Redirect::route('myposts.index')->with('status','animal-updated');
+    }
     public function destroy(Animal $animal)
     {   
         $animal->delete();
@@ -37,7 +78,7 @@ class PostController extends Controller
 
         return view("createpost", compact('colors'));
     }
-
+    
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([
