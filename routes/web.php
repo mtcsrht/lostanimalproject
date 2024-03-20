@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/myposts', [PostController::class, 'index'])->name('myposts.index');
+    Route::get('/myposts', [PostController::class, 'self'])->name('myposts.index');
     Route::delete('/myposts/{animal}', [PostController::class, 'destroy'])->name('myposts.destroy');
     Route::get('/myposts/{animal}/edit', [PostController::class, 'edit'])->name('myposts.edit');
     Route::post('/myposts/{animal}/edit', [PostController::class, 'update'])->name('myposts.update');
@@ -35,7 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/createpost', [PostController::class, 'store'])->name('uploadpost');
 });
 
-Route::get('posts', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts', [PostController::class, 'show'])->name('posts.show');
+Route::get('/about-animal/{animal}', [PostController::class,'index'])->name('about-animal.index');
 
 
 require __DIR__.'/auth.php';

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use App\Models\User;
 use App\Models\Color;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -12,14 +13,22 @@ use Ramsey\Uuid\Uuid;
 
 class PostController extends Controller
 {
-    public function index(Request $request)
+    
+    public function self(Request $request)
     {
         $animals = Animal::where("userId", auth()->user()->id)->get();
         return view("myposts", compact("animals"));
     }
+
+    public function index(Animal $animal){
+        $animal = Animal::where('uuid', $animal->uuid)->first();
+        return view("about-animal", compact("animal"));
+    }
+    
     public function show(){
         $animals = Animal::all();
-        return view("posts", compact("animals"));
+        $users = User::all();
+        return view("posts", compact("animals", "users"));
     }
     public function showApi() {
         $animals = Animal::all(); 
