@@ -59,8 +59,7 @@
                                             <x-danger-button x-data=""
                                                 x-on:click="$dispatch('open-modal', 'confirm-animal-deletion-{{ $animal->uuid }}')">{{ __('Állat törlése') }}</x-danger-button>
 
-                                            <x-modal name="confirm-animal-deletion-{{ $animal->uuid }}"
-                                                :show="$errors->userDeletion->isNotEmpty()" focusable>
+                                            <x-modal name="confirm-animal-deletion-{{ $animal->uuid }}" focusable>
                                                 <form method="post" action="{{ route('myposts.destroy', $animal) }}"
                                                     class="p-6">
                                                     @csrf
