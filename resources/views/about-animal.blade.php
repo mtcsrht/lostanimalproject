@@ -19,7 +19,6 @@
                                 <h1 class="font-bold text-xl gap-3">Elérhetőség</h1>
                                 <div class="flex flex-col sm:flex-row gap-3 ">
                                     <p><span class="font-bold">Név: <a class="font-normal text-gray-700 dark:text-gray-400" href="{{ url()->to('chatify/'.$user->id) }}">{{ $user->lastname . ' ' . $user->firstname }}</a></span></p>
-                                    <p></p>
                                     <a href="mailto:{{ $user->email }}"><span class="font-bold">Email:</span> {{ $user->email }}</a>
                                     <?php $formattedNumber = substr($user->phonenumber,2) ?>
                                     <a href="tel:{{ '+36'. $user->phonenumber }}"><span class="font-bold">Telefonszám:</span> {{ '+36'.$formattedNumber }}</a>
