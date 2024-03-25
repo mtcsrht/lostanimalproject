@@ -3,6 +3,9 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController; 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestEmail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +41,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/posts', [PostController::class, 'show'])->name('posts.show');
 Route::get('/about-animal/{animal}', [PostController::class,'index'])->name('about-animal.index');
 
+
+Route::get('/test-email', function () {
+    Mail::to('mate.cserhati03@gmail.com')->send(new TestEmail());
+    return 'Email sent. Check your inbox!';
+});
 
 require __DIR__.'/auth.php';

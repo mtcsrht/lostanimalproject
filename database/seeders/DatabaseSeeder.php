@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Animal;
+use App\Models\User;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -18,6 +20,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Animal::factory()->count(11)->create();
+        //Animal::factory()->count(11)->create();
+        //User::factory()->count(5)->create();
     }
 }
