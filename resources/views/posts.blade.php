@@ -100,19 +100,11 @@
                                     </div>
                                 </div>
                             @empty
-                                @if (empty(request()))
-                                    <div class="text-center">
-                                        <p class="text-2xl font-semibold text-gray-900 dark:text-white">Még nincs
-                                            feltöltött
-                                            állat</p>
-                                    </div>
-                                @else
                                     <div class="text-center">
                                         <p class="text-2xl font-semibold text-gray-900 dark:text-white">Nincs
                                             megjeleníthető
                                             állat</p>
                                     </div>
-                                @endif
                             @endforelse
                         </div>
                         <div class="mt-5">
