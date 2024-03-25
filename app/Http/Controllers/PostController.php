@@ -100,8 +100,6 @@ class PostController extends Controller
     public function destroy(Animal $animal)
     {   
         $imagePath = $animal->image;
-        //delete image
-        //check if image exists
         if(file_exists(public_path('storage/'.$imagePath)))
         {
             unlink(public_path('storage/'.$imagePath));
