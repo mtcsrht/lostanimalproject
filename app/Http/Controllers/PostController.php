@@ -22,7 +22,9 @@ class PostController extends Controller
 
     public function index(Animal $animal){
         $animal = Animal::where('uuid', $animal->uuid)->first();
-        return view("about-animal", compact("animal"));
+        $user = User::where('id', $animal->userId)->first();
+        $color = Color::where('id', $animal->colorId)->first();
+        return view("about-animal", compact("animal", "user", "color"));
     }
     
     public function show(){
