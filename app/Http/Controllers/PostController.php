@@ -76,7 +76,22 @@ class PostController extends Controller
                 'mimes:jpg,png,jpeg,svg',
                 'max:2048'
             ],
-        ]);
+        ],
+            [
+                'name.required' => 'A név mezőt kötelező kitölteni',
+                'name.string' => 'A név mezőnek karakterláncnak kell lennie',
+                'chip.string' => 'A chip mezőnek karakterláncnak kell lennie',
+                'chip.max' => 'A chip mező nem haladhatja meg a 16 számjegyet',
+                'description.required' => 'A leírás mezőt kötelező kitölteni',
+                'description.string' => 'A leírás mezőnek karakterláncnak kell lennie',
+                'description.max' => 'A leírás mező nem haladhatja meg az 1000 karaktert',
+                'picture.required' => 'A kép mezőt kötelező kitölteni',
+                'picture.image' => 'A fájlnak képnek kell lennie',
+                'picture.mimes' => 'A fájlnak jpg, png, jpeg, vagy svg kiterjesztésű fájlnak kell lennie',
+                'picture.max' => 'A fájl mérete nem haladhatja meg a 2048 kilobájtot',
+
+            ]
+        );
 
         
         $animal->name = $request->name;
@@ -128,7 +143,22 @@ class PostController extends Controller
                 'mimes:jpg,png,jpeg,svg',
                 'max:2048'
             ],
-        ]);
+        ],
+            [
+                'name.required' => 'A név mezőt kötelező kitölteni',
+                'name.string' => 'A név mezőnek karakterláncnak kell lennie',
+                'chip.string' => 'A chip mezőnek karakterláncnak kell lennie',
+                'chip.max' => 'A chip mező nem haladhatja meg a 16 számjegyet',
+                'description.required' => 'A leírás mezőt kötelező kitölteni',
+                'description.string' => 'A leírás mezőnek karakterláncnak kell lennie',
+                'description.max' => 'A leírás mező nem haladhatja meg az 1000 karaktert',
+                'picture.required' => 'A kép mezőt kötelező kitölteni',
+                'picture.image' => 'A fájlnak képnek kell lennie',
+                'picture.mimes' => 'A fájlnak jpg, png, jpeg, vagy svg kiterjesztésű fájlnak kell lennie',
+                'picture.max' => 'A fájl mérete nem haladhatja meg a 2048 kilobájtot',
+
+            ]
+        );
 
         $imagePath = $request->file('picture')->store(
             'animal-pictures',

@@ -33,6 +33,15 @@ class NewPasswordController extends Controller
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],[
+            'token.required' => 'A token megadása kötelező.',
+            'email.required' => 'Az e-mail cím megadása kötelező.',
+            'email.email' => 'Az e-mail cím formátuma nem megfelelő.',
+            'password.required' => 'A jelszó megadása kötelező.',
+            'password.confirmed' => 'A jelszavak nem egyeznek.',
+            'password.min' => 'A jelszó legalább :min karakter hosszú kell legyen.',
+            'password.pw' => 'A jelszó legalább egy kisbetűt, egy nagybetűt, egy számot és egy speciális karaktert tartalmazzon.',
+        
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

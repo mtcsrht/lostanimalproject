@@ -43,7 +43,10 @@ class ProfileController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+            'password' => ['required', 'current_password']
+        ], [
+            'password.required' => 'A jelszó megadása kötelező.',
+            'password.current_password' => 'A jelszó helytelen.'
         ]);
 
         $user = $request->user();

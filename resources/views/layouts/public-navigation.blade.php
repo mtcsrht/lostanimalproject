@@ -17,17 +17,17 @@
                         
                         @auth
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                            {{ __('Menü') }}
                         </x-nav-link>
                         @else
                         
                         <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                            {{ __('Login') }}
+                            {{ __('Bejelentkezés') }}
                         </x-nav-link>
 
                             @if (Route::has('register'))
                             <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
-                                {{ __('Register') }}
+                                {{ __('Regisztráció') }}
                             </x-nav-link>
                             @endif
                         @endauth
@@ -54,7 +54,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -64,7 +64,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Kijelentkezés') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -90,16 +90,16 @@
                     
                         @auth
                         <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                            {{ __('Menü') }}
                         </x-responsive-nav-link>
                         @else
                         <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                            {{ __('Login') }}
+                            {{ __('Bejelentkezés') }}
                         </x-responsive-nav-link>
 
                             @if (Route::has('register'))
                             <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('Register')">
-                                {{ __('Register') }}
+                                {{ __('Regisztráció') }}
                             </x-responsive-nav-link>
                             @endif
                         @endauth
@@ -111,7 +111,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Profil') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -121,7 +121,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Kijelentkezés') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
