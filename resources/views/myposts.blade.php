@@ -37,8 +37,6 @@
                                             {{ $animal->name }}</h5>
                                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                             {{ Str::of($animal->description)->limit(40) }}</p>
-                                        <!-- DEBUG -->
-                                        <p>!DEBUG! {{ $animal->uuid }}</p>
                                         <div class="flex gap-5">
 
                                             <form action="{{ route('myposts.edit', $animal) }}" method="get">
@@ -72,7 +70,6 @@
                                                     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                                         {{ __('Ha egyszer kitörlöd az állatot, később újra fel kell töltened!') }}
                                                     </p>
-                                                    <p>!!DEBUG!! {{ $animal->uuid }}</p>
                                                     <div class="mt-6 flex justify-end">
                                                         <x-secondary-button x-on:click="$dispatch('close')">
                                                             {{ __('Mégse') }}
