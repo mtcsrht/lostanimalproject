@@ -9,9 +9,6 @@
                     <a href="{{ url('/')}}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
-                    <x-nav-link :href="url()->previous()" class="ml-5">
-                        {{ __('Back') }}
-                    </x-nav-link>
                 </div>
                 
                 <!-- Navigation Links -->
