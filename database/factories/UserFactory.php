@@ -26,9 +26,14 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'email_verified_at' => null,
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'remember_token' => null,
+            'firstname' => fake()->firstName(),
+            'lastname' => fake()->lastName(),
+            'phonenumber' => fake()->phoneNumber(),
+            'irsz_id' => 2660,
+
         ];
     }
 
