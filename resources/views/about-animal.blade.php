@@ -29,7 +29,7 @@
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                             <h1 class="font-bold text-xl">Leírás</h1>
                             <p class="text-left max-w-full">{{ $animal->description }}</p>
-                            <p class="text-gray-500 mt-5 "><span class="font-bold text-black">Feltöltés: </span>{{ $animal->created_at->diffForHumans() }}</p>
+                            <p class="text-gray-500 mt-5 "><span class="font-bold text-black">Feltöltés: </span>{{date($animal->created_at)}} {{ $animal->created_at->diffForHumans() }} </p>
                         </div>
                     </div>
                 </div>
