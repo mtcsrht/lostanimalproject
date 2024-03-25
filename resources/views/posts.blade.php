@@ -18,7 +18,7 @@
                                             {{ Str::of($animal->description)->limit(40) }}</p>
                                             
                                         <?php $owner = $users->where('id', $animal->userId)->first(); ?>
-                                        <a href="{{url()->to('chatify/'.$owner->id)}}">{{ $owner->lastname . ' ' . $owner->firstname }}</a> 
+                                        <a class="font-normal text-gray-700 dark:text-gray-400" href="{{url()->to('chatify/'.$owner->id)}}">{{ $owner->lastname . ' ' . $owner->firstname }}</a> 
                                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                             {{ $animal->created_at->diffForHumans() }}</p>
                                         <a href="{{ route('about-animal.index', $animal) }}"
