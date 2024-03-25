@@ -27,10 +27,22 @@ class PostController extends Controller
         return view("about-animal", compact("animal", "user", "color"));
     }
     
-    public function show(){
-        $animals = Animal::all();
+    public function show(Request $request){
+
+        $animals = Animal::when($request->color_id, function ($query, $color_id) {
+                    return $query->where('colorId', $color_id);
+                })->when($request->gender, function ($query, $gender) {
+                    return $query->where('gender', $gender);
+                })->when($request->chipNumber, function ($query, $chipNumber) {
+                    if($chipNumber == "has"){
+                        return $query->whereNotNull('chipNumber');
+                    }else{
+                        return $query->whereNull('chipNumber');
+                    }
+                })->paginate(6);
         $users = User::all();
-        return view("posts", compact("animals", "users"));
+        $colors = Color::all();
+        return view("posts", compact("animals", "users", "colors"));
     }
     public function showApi() {
         $animals = Animal::all(); 
