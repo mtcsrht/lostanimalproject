@@ -39,6 +39,13 @@ class PostController extends Controller
                     }else{
                         return $query->whereNull('chipNumber');
                     }
+                })->when($request->query('sort_by'), function($query, $sort_by){
+                    if($sort_by){
+                        list($column, $direction) = explode('-', $sort_by);
+                        return $query->orderBy($column, $direction);
+                    }else{
+                        return $query;
+                    }
                 })->paginate(6);
         $users = User::all();
         $colors = Color::all();
@@ -94,7 +101,11 @@ class PostController extends Controller
     {   
         $imagePath = $animal->image;
         //delete image
-        unlink(public_path('storage/'.$imagePath));
+        //check if image exists
+        if(file_exists(public_path('storage/'.$imagePath)))
+        {
+            unlink(public_path('storage/'.$imagePath));
+        }
         $animal->delete();
         return Redirect::route('myposts.index')->with('status','animal-deleted');
     }
