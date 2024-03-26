@@ -22,22 +22,23 @@ class AnimalFactory extends Factory
      */
     public function definition(): array
     {
+        /*
         $imageUuid = Uuid::uuid4()->toString();
         $imageUrl = $this->faker->imageUrl(512, 512, 'animals', true);
         $imageContents = file_get_contents($imageUrl);
 
         $imagePath = 'animal-pictures/' . $imageUuid . '.jpg'; // Simpler path
         Storage::disk('public')->put($imagePath, $imageContents); // Use Laravel's storage
-        
+        */
         return[
             'uuid' => Uuid::uuid4()->toString(),
             'userId' => User::inRandomOrder()->first()->id,
             'name' => $this->faker->word().$this->faker->word(),
-            'chipNumber' => $this->faker->randomNumber(9),
+            'chipNumber' => $this->faker->numerify('###############'),
             'gender' => $this->faker->randomElement([0,1]),
             'colorid' => $this->faker->randomElement([1,2,3,4,5,6,7]),
             'description' => $this->faker->text(1000),
-            'image' => $imagePath,
+            'image' => "animal-pictures/animal.jpg",
         ];
     }
 }
