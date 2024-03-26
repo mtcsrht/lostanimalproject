@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('chatify')" :active="request()->routeIs('chatify')">
                         {{ __('Chat') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.show')" :active="request()->routeIs('posts.show')">
+                        {{ __('Publikus posztok') }}
+                    </x-nav-link>
                 </div>
                 
             </div>
@@ -88,6 +91,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('chatify')" :active="request()->routeIs('chatify')">
                 {{ __('Chat') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('posts.show')" :active="request()->routeIs('posts.show')">
+                {{ __('Publikus posztok') }}
             </x-responsive-nav-link>
         </div>
 
