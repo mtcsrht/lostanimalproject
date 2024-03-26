@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-2xl font-bold text-blue-600 flex flex-col justify-center items-center w-full mb-5">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Üdvözöllek a menüben!") }}
+                        <h1>Üdvözöllek {{ Auth::user()->firstname }} a menüben!</h1>
                     </div>
                 </div>
             </div>

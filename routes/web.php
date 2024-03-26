@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController; 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/posts', [PostController::class, 'show'])->name('posts.show');
 Route::get('/about-animal/{animal}', [PostController::class,'index'])->name('about-animal.index');
 
-
+Route::get('/admin', [AdminController::class, 'show'])->name('admin.show');
+Route::delete('/admin', [AdminController::class, 'destroy'])->name('admin.destroy');
+Route::patch('/admin', [AdminController::class, 'update'])->name('admin.update');
 
 
 require __DIR__.'/auth.php';
