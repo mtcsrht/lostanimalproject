@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('phonenumber');
             $table->integer('IRSZ_ID');
-            $table->string('address');
-            $table->string('avatar');
             $table->foreign('IRSZ_ID')->references('IRSZ_Id')->on('cities')->onDelete('cascade');
             
         });
