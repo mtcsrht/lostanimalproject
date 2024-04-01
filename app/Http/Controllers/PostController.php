@@ -13,22 +13,31 @@ use Ramsey\Uuid\Uuid;
 
 class PostController extends Controller
 {
-    
+    // Lekéri a bejelentkezett user állatait.
+    // Az állatokat a myposts.blade.php oldalon jeleníti meg.
     public function self(Request $request)
     {
+        // Az állatokat lekéri a bejelentkezett user id-je alapján.
         $animals = Animal::where("userId", auth()->user()->id)->get();
+        // A myposts.blade.php oldalon jeleníti meg az állatokat.
         return view("myposts", compact("animals"));
     }
 
+    // Az állat adatait jeleníti meg.
     public function index(Animal $animal){
+        // Az állat adatait lekéri az állat uuid-je alapján.
         $animal = Animal::where('uuid', $animal->uuid)->first();
+        // Az állat gazdájának adatait lekéri az állat userId mezője alapján.
         $user = User::where('id', $animal->userId)->first();
+        // Az állat színének adatait lekéri az állat colorId mezője alapján.
         $color = Color::where('id', $animal->colorId)->first();
+        // Az about-animal.blade.php oldalon jeleníti meg az állat adatait.
         return view("about-animal", compact("animal", "user", "color"));
     }
     
+    // Az állatokat jeleníti meg.
     public function show(Request $request){
-
+        // Az állatokat lekéri a szűrőfeltételek alapján.
         $animals = Animal::when($request->color_id, function ($query, $color_id) {
                     return $query->where('colorId', $color_id);
                 })->when($request->gender, function ($query, $gender) {
@@ -47,23 +56,28 @@ class PostController extends Controller
                         return $query;
                     }
                 })->paginate(6);
+        
         $users = User::all();
         $colors = Color::all();
+        // A posts.blade.php oldalon jeleníti meg az állatokat.
         return view("posts", compact("animals", "users", "colors"));
     }
+    // Az állatokat jeleníti meg az API-n keresztül.
     public function showApi() {
         $animals = Animal::all(); 
         return $animals;
     }
 
+    // Megjeleníti a szerkesztés oldalt.
     public function edit(Animal $animal) : View
     {
         $colors = Color::all();
         return view("editpost", compact('animal', 'colors'));
     }
-
+    // Frissíti az állat adatait.
     public function update(Request $request, Animal $animal) : RedirectResponse
     {
+        // Az állat adatainak validálása.
         $request->validate([
             'name' => ['required', 'string'],
             'chip' => ['nullable','string', 'max:16'],
@@ -77,7 +91,7 @@ class PostController extends Controller
                 'max:2048'
             ],
         ],
-            [
+            [ // A validálási hibák üzenetei.
                 'name.required' => 'A név mezőt kötelező kitölteni',
                 'name.string' => 'A név mezőnek karakterláncnak kell lennie',
                 'chip.string' => 'A chip mezőnek karakterláncnak kell lennie',
@@ -93,13 +107,14 @@ class PostController extends Controller
             ]
         );
 
-        
+        // Az állat adatainak frissítése.
         $animal->name = $request->name;
         $animal->chipNumber = $request->chip;
         $animal->gender = $request->gender;
         $animal->colorId = $request->color;
         $animal->description = $request->description;
 
+        // Az állat képének frissítése, ha a kép változott.
         if ($request->hasFile('picture')) {
             $imagePath = $request->file('picture')->store(
                 'animal-pictures',
@@ -107,30 +122,35 @@ class PostController extends Controller
             );
             $animal->image = $imagePath;
         }
-
+        // Az állat adatainak mentése.
         $animal->save();
-
+        // A myposts.blade.php oldalra irányítás. Egy animal-updated státuszüzenettel.
         return Redirect::route('myposts.index')->with('status','animal-updated');
     }
+    // Az állat törlése.
     public function destroy(Animal $animal)
     {   
+        // Az állat képének törlése, ha egyeltalán létezik az a kép(hibakezelés).
         $imagePath = $animal->image;
         if(file_exists(public_path('storage/'.$imagePath)))
         {
             unlink(public_path('storage/'.$imagePath));
         }
+        // Az állat törlése.
         $animal->delete();
+        // A myposts.blade.php oldalra irányítás. Egy animal-deleted státuszüzenettel.
         return Redirect::route('myposts.index')->with('status','animal-deleted');
     }
+    // Az állat létrehozásához szükséges blade oldal megjelenítése.
     public function create() : View
     {
         $colors = Color::all();
-
         return view("createpost", compact('colors'));
     }
-    
+    // Az állat létrehozása.
     public function store(Request $request) : RedirectResponse
     {
+        // Az állat adatainak validálása.
         $request->validate([
             'name' => ['required', 'string'],
             'chip' => ['nullable','string', 'max:16'],
@@ -144,7 +164,7 @@ class PostController extends Controller
                 'max:2048'
             ],
         ],
-            [
+            [ // A validálási hibák üzenetei.
                 'name.required' => 'A név mezőt kötelező kitölteni',
                 'name.string' => 'A név mezőnek karakterláncnak kell lennie',
                 'chip.string' => 'A chip mezőnek karakterláncnak kell lennie',
@@ -159,13 +179,13 @@ class PostController extends Controller
 
             ]
         );
-
+        // Az állat képének elmentése.
         $imagePath = $request->file('picture')->store(
             'animal-pictures',
             'public'
         );
 
-
+        // Az állat létrehozása.
         Animal::create([
             'uuid' => Uuid::uuid4()->toString(),
             'userId' => $request->user()->id,
@@ -177,7 +197,7 @@ class PostController extends Controller
             'image' => $imagePath,
         ]);
         
-                
+        // A myposts.blade.php oldalra irányítás. Egy animal-uploaded státuszüzenettel.  
         return Redirect::route('myposts.index')->with('status','animal-uploaded');
     }
 }
