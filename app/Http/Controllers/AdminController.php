@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function show()
     {
         
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $users = User::all();
         $cities = City::all();
         return view('admin', compact('users', 'cities'));
@@ -32,7 +32,7 @@ class AdminController extends Controller
 
     public function destroy(Request $request)
     {       
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         User::where('id', $request->user)->delete();
         return redirect()->route('admin.show')->with('status', 'user-deleted');
     }
@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
 
         $request->validate([
             'firstname' => 'required',
