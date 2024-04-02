@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\User;
 use App\Models\Color;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Js;
 use Illuminate\View\View;
 use Ramsey\Uuid\Uuid;
 
 class PostController extends Controller
 {
-    // Lekéri a bejelentkezett user állatait.
-    // Az állatokat a myposts.blade.php oldalon jeleníti meg.
-    public function self(Request $request)
+
+    /**
+     * Lekéri a bejelentkezett user állatait. Az állatokat a myposts.blade.php oldalon jeleníti meg.
+     * 
+     */
+    public function self(Request $request) : View
     {
         // Az állatokat lekéri a bejelentkezett user id-je alapján.
         $animals = Animal::where("userId", auth()->user()->id)->get();
@@ -23,8 +28,12 @@ class PostController extends Controller
         return view("myposts", compact("animals"));
     }
 
-    // Az állat adatait jeleníti meg.
-    public function index(Animal $animal){
+    /**
+     * Az állat adatait jeleníti meg.
+     * 
+     */
+    public function index(Animal $animal): View
+    {
         // Az állat adatait lekéri az állat uuid-je alapján.
         $animal = Animal::where('uuid', $animal->uuid)->first();
         // Az állat gazdájának adatait lekéri az állat userId mezője alapján.
@@ -35,8 +44,12 @@ class PostController extends Controller
         return view("about-animal", compact("animal", "user", "color"));
     }
     
-    // Az állatokat jeleníti meg.
-    public function show(Request $request){
+    /**
+     * Az állatokat jeleníti meg a posts.blade.php oldalon.
+     * 
+     */
+    public function show(Request $request): View
+    {
         // Az állatokat lekéri a szűrőfeltételek alapján.
         $animals = Animal::when($request->color_id, function ($query, $color_id) {
                     return $query->where('colorId', $color_id);
@@ -62,19 +75,28 @@ class PostController extends Controller
         // A posts.blade.php oldalon jeleníti meg az állatokat.
         return view("posts", compact("animals", "users", "colors"));
     }
-    // Az állatokat jeleníti meg az API-n keresztül.
-    public function showApi() {
+
+    /**
+     * Az állatokat jeleníti meg az API-n keresztül.
+     */
+    public function showApi()
+    {
         $animals = Animal::all(); 
         return $animals;
     }
 
-    // Megjeleníti a szerkesztés oldalt.
+    /**
+     * Megjeleníti a szerkesztés oldalt.
+     */
     public function edit(Animal $animal) : View
     {
         $colors = Color::all();
         return view("editpost", compact('animal', 'colors'));
     }
-    // Frissíti az állat adatait.
+
+    /**
+     * Frissíti az állat adatait.
+     */
     public function update(Request $request, Animal $animal) : RedirectResponse
     {
         // Az állat adatainak validálása.
@@ -127,7 +149,10 @@ class PostController extends Controller
         // A myposts.blade.php oldalra irányítás. Egy animal-updated státuszüzenettel.
         return Redirect::route('myposts.index')->with('status','animal-updated');
     }
-    // Az állat törlése.
+
+    /**
+     * Az állat törlése.
+     */
     public function destroy(Animal $animal)
     {   
         // Az állat képének törlése, ha egyeltalán létezik az a kép(hibakezelés).
@@ -141,13 +166,19 @@ class PostController extends Controller
         // A myposts.blade.php oldalra irányítás. Egy animal-deleted státuszüzenettel.
         return Redirect::route('myposts.index')->with('status','animal-deleted');
     }
-    // Az állat létrehozásához szükséges blade oldal megjelenítése.
+
+    /**
+     * Az állat létrehozásához szükséges blade oldal megjelenítése.
+     */
     public function create() : View
     {
         $colors = Color::all();
         return view("createpost", compact('colors'));
     }
-    // Az állat létrehozása.
+
+    /**
+     * Az állat létrehozása az adatbázisba.
+     */
     public function store(Request $request) : RedirectResponse
     {
         // Az állat adatainak validálása.
