@@ -9,6 +9,9 @@ use App\Models\Admin;
 
 class AdminAuthenticate
 {
+    /**
+    * Ellenőrzi, hogy a bejelentkezett user admin-e.
+    */
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->check() || !Admin::where('email', auth()->user()->email)->exists()) {

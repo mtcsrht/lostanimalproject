@@ -42,7 +42,7 @@ class AdminController extends Controller
 
     
     /**
-     * Az update metódus frissíti a felhasználó adatait.
+     * Az update metódus frissíti a felhasználó adatait a kérés alapján.
      * 
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse

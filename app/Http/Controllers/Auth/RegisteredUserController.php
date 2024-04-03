@@ -67,9 +67,6 @@ class RegisteredUserController extends Controller
             'postalCode.max' => 'Az irányítószám maximum 4 karakter hosszú lehet.',
             'postalCode.min' => 'Az irányítószám minimum 4 karakter hosszú kell legyen.',
         ]);
-        
-        //deprecated MAR NEM HASZNALJUK DE FELEK HOGY ELROMLIK HA TORLOM
-        $irsz = City::where('name' , $request->cityname)->value("IRSZ_Id");
        
         $user = User::create([
             'name' => $request->name,
