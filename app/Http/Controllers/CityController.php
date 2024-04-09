@@ -10,7 +10,7 @@ class CityController extends Controller
     /**
      * Az összes várost lekéri.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * 
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class CityController extends Controller
      * Az adott várost lekéri a paraméterben átadott városrészlet alapján.
      *
      * @param  string  $name
-     * @return \Illuminate\Http\JsonResponse
+     * 
      */
     public function show($name)
     {
