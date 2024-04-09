@@ -34,8 +34,6 @@ class PostController extends Controller
      */
     public function index(Animal $animal): View
     {
-        // Az állat adatait lekéri az állat uuid-je alapján.
-        $animal = Animal::where('uuid', $animal->uuid)->first();
         // Az állat gazdájának adatait lekéri az állat userId mezője alapján.
         $user = User::where('id', $animal->userId)->first();
         // Az állat színének adatait lekéri az állat colorId mezője alapján.
