@@ -14,7 +14,7 @@
         <!-- Styles -->       
         @vite(['resources/css/app.css', 'resources/js/app.js'])     
     </head>
-    <body class="antialiased bg-lightmode dark:bg-darkmode bg-norepeat bg-cover aspect-square sm:aspect-auto">
+    <body class="antialiased bg-white dark:bg-gray-900 bg-lightmode dark:bg-darkmode bg-norepeat bg-cover aspect-square sm:aspect-auto">
             <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center selection:bg-cyan-700 selection:text-white">
                 @if (Route::has('login'))
                     <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">

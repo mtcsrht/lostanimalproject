@@ -15,7 +15,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-mobile-waves-lightmode sm:bg-waves-lightmode sm:dark:bg-waves-darkmode dark:bg-mobile-waves-darkmode bg-no-repeat bg-cover">
+    <body class="font-sans antialiased bg-mobile-waves-lightmode sm:bg-waves-lightmode sm:dark:bg-waves-darkmode dark:bg-mobile-waves-darkmode bg-no-repeat bg-cover dark:bg-gray-900">
         <div class="min-h-screen ">
             @include('layouts.public-navigation')
 
